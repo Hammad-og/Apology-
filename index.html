@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Sana</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    color:white;
+    overflow-x:hidden;
+}
+
+.container{
+    backdrop-filter: blur(20px);
+    background: rgba(255,255,255,0.08);
+    border-radius:25px;
+    padding:50px;
+    width:90%;
+    max-width:900px;
+    text-align:center;
+    box-shadow: 0 0 40px rgba(0,0,0,0.6);
+    margin:40px 0;
+}
+
+h1{
+    font-size:3rem;
+    margin-bottom:20px;
+    background: linear-gradient(to right,#fff,#aaa);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+p{
+    font-size:1.2rem;
+    line-height:1.8;
+    margin-bottom:20px;
+}
+
+.buttons{
+    margin-top:30px;
+}
+
+.glass-btn{
+    padding:15px 35px;
+    margin:10px;
+    border:none;
+    border-radius:40px;
+    font-size:1.1rem;
+    cursor:pointer;
+    color:white;
+    backdrop-filter: blur(10px);
+    background: rgba(255,255,255,0.15);
+    border:1px solid rgba(255,255,255,0.3);
+    transition:0.3s ease;
+}
+
+.glass-btn:hover{
+    transform:scale(1.1);
+    background: rgba(255,255,255,0.25);
+}
+
+.hidden{
+    display:none;
+}
+
+.cat-gallery{
+    margin-top:40px;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:20px;
+}
+
+.cat-gallery img{
+    width:150px;
+    border-radius:20px;
+    transition:0.4s;
+}
+
+.cat-gallery img:hover{
+    transform:scale(1.2) rotate(5deg);
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Sana</h1>
+
+    <p>
+        This is not a small sorry.  
+        This is a legendary sorry.  
+        The greatest apology of all time.
+    </p>
+
+    <p>
+        If I ever said something wrong, stayed silent when I should have spoken,
+        acted weird, disappeared, overthought, under explained, or made things uncomfortable,
+        I am truly sorry.
+    </p>
+
+    <p>
+        You do not even know this exists.  
+        And you do not need to.  
+        But this apology is real.
+    </p>
+
+    <div class="buttons">
+        <button class="glass-btn" onclick="showYes()">Forgiven</button>
+        <button class="glass-btn" onclick="showNo()">Still Thinking</button>
+    </div>
+
+    <div id="yesSection" class="hidden">
+        <h1>Thank You</h1>
+        <p>
+            You just made history.  
+            This is officially the GOAT apology acceptance moment.
+        </p>
+        <p>
+            May your life stay peaceful, calm, and full of soft moments.
+        </p>
+    </div>
+
+    <div id="noSection" class="hidden">
+        <h1>I Understand</h1>
+        <p>
+            No pressure.  
+            No drama.  
+            Growth takes time.
+        </p>
+        <p>
+            The apology still stands.
+        </p>
+    </div>
+
+    <div class="cat-gallery">
+        <!-- ADD YOUR CAT PNG FILES HERE -->
+        <img src="cat1.png">
+        <img src="cat2.png">
+        <img src="cat3.png">
+        <img src="cat4.png">
+    </div>
+
+</div>
+
+<script>
+function showYes(){
+    document.getElementById("yesSection").classList.remove("hidden");
+    document.getElementById("noSection").classList.add("hidden");
+}
+
+function showNo(){
+    document.getElementById("noSection").classList.remove("hidden");
+    document.getElementById("yesSection").classList.add("hidden");
+}
+</script>
+
+</body>
+</html>
