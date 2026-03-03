@@ -94,6 +94,17 @@ p{
 .cat-gallery img:hover{
     transform:scale(1.2) rotate(5deg);
 }
+
+canvas{
+    margin-top:60px;
+    width:100%;
+    height:400px;
+}
+
+footer{
+    margin-top:20px;
+    opacity:0.6;
+}
 </style>
 </head>
 
@@ -131,19 +142,13 @@ p{
             You just made history.  
             This is officially the GOAT apology acceptance moment.
         </p>
-        <p>
-            May your life stay peaceful, calm, and full of soft moments.
-        </p>
     </div>
 
     <div id="noSection" class="hidden">
         <h1>I Understand</h1>
         <p>
             No pressure.  
-            No drama.  
-            Growth takes time.
-        </p>
-        <p>
+            Growth takes time.  
             The apology still stands.
         </p>
     </div>
@@ -155,9 +160,11 @@ p{
         <img src="cat4.png">
     </div>
 
+    <!-- DRAGON CANVAS -->
+    <canvas id="dragonCanvas"></canvas>
+
 </div>
 
-<!-- AUDIO -->
 <audio id="bgMusic" loop>
     <source src="meowmeow.mp3" type="audio/mpeg">
 </audio>
@@ -173,17 +180,95 @@ function showNo(){
     document.getElementById("yesSection").classList.add("hidden");
 }
 
-// Play music after first click (browser safe)
 document.addEventListener("click", function() {
     const audio = document.getElementById("bgMusic");
     audio.volume = 0.3;
     audio.play();
 }, { once: true });
 
+/* =========================
+   DRAGON ANIMATION
+========================= */
+
+const canvas = document.getElementById("dragonCanvas");
+const ctx = canvas.getContext("2d");
+
+function resize() {
+    canvas.width = canvas.offsetWidth;
+    canvas.height = 400;
+}
+resize();
+window.addEventListener("resize", resize);
+
+const N = 22;
+const elems = [];
+for (let i = 0; i < N; i++) {
+    elems[i] = { type: null, x: canvas.width/2, y: canvas.height/2 };
+}
+
+for (let i = 1; i < N; i++) {
+    if (i === 1) elems[i].type = "head";
+    else if (i === 8 || i === 14) elems[i].type = "fin";
+    else elems[i].type = "spine";
+}
+
+let rad = 0;
+
+function draw() {
+    ctx.fillStyle = "rgba(0,0,0,0.15)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    rad += 0.02;
+
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+    const maxRadius = Math.min(centerX, centerY) - 40;
+
+    for (let i = 1; i < N; i++) {
+
+        let angle = rad + i * 0.35;
+        let radius = maxRadius * (i / N);
+
+        let x = centerX + Math.cos(angle) * radius * 0.7;
+        let y = centerY + Math.sin(angle) * radius * 0.4;
+
+        ctx.strokeStyle = "white";
+        ctx.lineWidth = 1.3;
+        ctx.beginPath();
+
+        if (elems[i].type === "head") {
+            ctx.arc(x, y, 16, 0, Math.PI * 2);
+        }
+
+        else if (elems[i].type === "fin") {
+            ctx.moveTo(x, y);
+            ctx.lineTo(
+                x + Math.cos(angle + 1.5) * 40,
+                y + Math.sin(angle + 1.5) * 40
+            );
+            ctx.moveTo(x, y);
+            ctx.lineTo(
+                x + Math.cos(angle - 1.5) * 40,
+                y + Math.sin(angle - 1.5) * 40
+            );
+        }
+
+        else {
+            ctx.arc(x, y, 4, 0, Math.PI * 2);
+        }
+
+        ctx.stroke();
+    }
+
+    requestAnimationFrame(draw);
+}
+
+draw();
 </script>
 
-    <footer>
-    ~ Hammad
+<footer>
+~ Hammad
 </footer>
+
 </body>
 </html>
