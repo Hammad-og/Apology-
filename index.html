@@ -149,7 +149,6 @@ p{
     </div>
 
     <div class="cat-gallery">
-        <!-- ADD YOUR CAT PNG FILES HERE -->
         <img src="cat1.png">
         <img src="cat2.png">
         <img src="cat3.png">
@@ -157,6 +156,11 @@ p{
     </div>
 
 </div>
+
+<!-- AUDIO -->
+<audio id="bgMusic" loop>
+    <source src="meowmeow.mp3" type="audio/mpeg">
+</audio>
 
 <script>
 function showYes(){
@@ -168,6 +172,14 @@ function showNo(){
     document.getElementById("noSection").classList.remove("hidden");
     document.getElementById("yesSection").classList.add("hidden");
 }
+
+// Play music after first click (browser safe)
+document.addEventListener("click", function() {
+    const audio = document.getElementById("bgMusic");
+    audio.volume = 0.3;
+    audio.play();
+}, { once: true });
+
 </script>
 
 </body>
